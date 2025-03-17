@@ -1,8 +1,14 @@
 Please run with these command
-  cd to /apps
+cd to /apps
+   cd to backend -> yarn install
+   cd to frontend -> yarn install
+
+cd back to /apps
   yarn run dev:frontend
   yarn run dev:backend
 
+http://localhost:3000/ -> FE
+http://localhost:3001/ads -> BACKEND
 -----------------------------
 
 QUESTION 1
