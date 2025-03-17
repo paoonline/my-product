@@ -1,0 +1,34 @@
+QUESTION 1
+BACKEND
+  I have implement with 2 api controller
+  /ads
+  GET: The fe can retrieve the ads object. If the frontend cannot call the API, it will return an  error message.
+
+  POST: The fe send the post body and return successfully response
+    If any required parameters are missing in the request body, it will return a Missing ad data fields error.
+    If the fe cannot call the API, it will return an error message.
+
+FRONTEND
+   I have implement 1 page
+   the frontend call /ads api and display the table on the screen
+
+----------------------------------------------------------------------------
+
+QUESTION 2 Python and Machine Learning
+ad_performance
+
+CTR: Low CTR indicates that the ad is not compelling enough to drive clicks
+   -  Consider refining the targeting criteria
+CPC: High CPC indicates that the ad campaign is expensive
+   - Improve ad relevance
+
+code flow
+- import csv
+- import reader csv
+- create mock data
+- create cal_ctr (clicks / impress) * 100 function
+- create cal_cpc  (cost / clicks) * 100 function
+- print header
+- for row in reader
+- print each row and column
+
