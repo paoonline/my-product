@@ -24,7 +24,7 @@ FRONTEND
 
 QUESTION 2 Python and Machine Learning
 
-ad_performance
+ad_performance.py
 
 CTR: Low CTR indicates that the ad is not compelling enough to drive clicks
    -  Consider refining the targeting criteria
