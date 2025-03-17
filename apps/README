@@ -1,4 +1,5 @@
 Please run with these command
+  cd to /apps
   yarn run dev:frontend
   yarn run dev:backend
 
