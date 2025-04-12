@@ -105,7 +105,7 @@ Sign-off & Post-Release Monitoring report
 
 (Database design):
 
--- Table to support multi-language translations (many-to-one with product)
+-- Table to support multi-language translations (many-to-one with product), A product can be created with multiple language translations.
 
       Many to one
       TABLE product_translation (
