@@ -1,4 +1,4 @@
-Please run with these command
+Please run with these command first
 
    cd to /apps root dir first  then -> yarn install   
    
