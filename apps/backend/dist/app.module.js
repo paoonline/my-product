@@ -10,13 +10,28 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const ads_module_1 = require("./ads/ads.module");
+const product_module_1 = require("./product/product.module");
+const typeorm_1 = require("@nestjs/typeorm");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [ads_module_1.AdsModule],
+        imports: [
+            config_1.ConfigModule.forRoot(),
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'postgres',
+                host: process.env.DB_HOST || 'localhost',
+                port: parseInt(process.env.DB_PORT ?? '5432', 10),
+                username: process.env.DB_USER || 'postgres',
+                password: process.env.DB_PASS || '1234',
+                database: process.env.DB_NAME || 'demo',
+                autoLoadEntities: true,
+                synchronize: true,
+            }),
+            product_module_1.ProductModule
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

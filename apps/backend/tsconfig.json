@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["aria-query", "node", "jest"],
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
