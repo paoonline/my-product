@@ -42,7 +42,7 @@ export class ProductService {
     });
   
     return {
-      data,
+      productList: data,
       total,
       page,
       limit,
