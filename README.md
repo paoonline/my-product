@@ -1,12 +1,12 @@
 Please run with these command
 
-   cd to /apps root dir first  then yarn install   
+   cd to /apps root dir first  then -> yarn install   
    
    cd to backend -> yarn install
    
    cd to frontend -> yarn install
 
-cd back to /apps
+cd back to /apps to run application
 
      yarn run dev:frontend
 
@@ -36,30 +36,30 @@ MICRO SERVICE DESIGN
  (Micro service design)
 - Services are split: Customer API, Master Data API, Transaction API
 * Each has its own database (likely per bounded context)
-Call api gateway first
-Central entry point for routing, rate-limiting
+* Call api gateway first
+* Central entry point for routing, rate-limiting
 
 (Producer)  Customer API,  Master Data API, Transaction Data API,  post data to db and event to kafka
-Each service writes to its own DB
-Then publishes events to Kafka (e.g., customer.created, transaction.updated, etc.)
+* Each service writes to its own DB
+* Then publishes events to Kafka (e.g., customer.created, transaction.updated, etc.)
 
 (KAFKA) Event steam  send event to redis consumer
-Kafka consumer listens for events
-Writes processed/aggregated data into Redis 
+* Kafka consumer listens for events
+* Writes processed/aggregated data into Redis 
 
 (When write to redis , Redis has limited durability  use DB backup as well)
-Since Redis is not persistent by default, you add:
+- Since Redis is not persistent by default, you add:
 * DB backup for recovery
 * Optional: Redis AOF (Append-Only File) or RDB snapshot config
 
 (INT api for initial BACKUP table)
-An internal API to dump Redis data into backup DB
+* An internal API to dump Redis data into backup DB
 
 (Batch job)
-Clear redis after midnight because  Redis has limited durability
+* Clear redis after midnight because  Redis has limited durability
 
 (NEW API get from redis and will be near real time)
-For read performance: new consumer-facing API reads from Redis
+* For read performance: new consumer-facing API reads from Redis
 
 ----------------
 2. Assuming the team has started planning a new project, the project manager asks you for a
@@ -67,13 +67,13 @@ performance test strategy plan
 
 Should ask project manager about this
 
-Declare Objective 
+ * Declare Objective 
 
-Validate system performance under expected and peak load conditions.
+* Validate system performance under expected and peak load conditions.
 
-Analysis Risk with Risk management
+* Analysis Risk with Risk management
 
-Scope Release discusstion 
+* Scope Release discusstion 
 
       Critical APIs 
       Frontend Backend services (database queries, caching layers)
@@ -97,11 +97,11 @@ Sign-off & Post-Release Monitoring report
 
 (Validation):
 
-      Ensure proper DTO type checking to prevent invalid data structures.
-      DTO Protection: Protect each DTO to avoid unintended data injection from other request sources.
-      SQL Injection: Implement safeguards to prevent SQL injection attacks from user input.
-      Symbol Replacement: Sanitize and replace special characters like < and > with . to avoid SQL injection and parsing issues.
-      XSS Protection: Implement measures to prevent Cross-Site Scripting (XSS) attacks from malicious actors.
+  * Ensure proper DTO type checking to prevent invalid data structures.
+  * DTO Protection: Protect each DTO to avoid unintended data injection from other request sources.
+  * SQL Injection: Implement safeguards to prevent SQL injection attacks from user input.
+  * Symbol Replacement: Sanitize and replace special characters like < and > with . to avoid SQL injection and parsing issues.
+  * XSS Protection: Implement measures to prevent Cross-Site Scripting (XSS) attacks from malicious actors.
 
 (Database design):
 
@@ -122,6 +122,7 @@ Sign-off & Post-Release Monitoring report
 
 -- Table to store products (one product can have many translations with other lang)
 
+      one to many
       TABLE product (
         id UUID PRIMARY KEY, one
         created_at TIMESTAMP DEFAULT NOW(),
