@@ -31,7 +31,7 @@ REST APIs and an RDBMS database. How would you design a new API for this feature
 
 MICRO SERVICE DESIGN
 
-![Product Screenshot](https://raw.githubusercontent.com/paoonline/my-product/master/api-design.png)
+![Product Screenshot](https://raw.githubusercontent.com/paoonline/my-product/master/api-design-struc.png)
 
  (Micro service design)
 - Services are split: Customer API, Master Data API, Transaction API
