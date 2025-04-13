@@ -31,7 +31,7 @@ REST APIs and an RDBMS database. How would you design a new API for this feature
 
 MICRO SERVICE DESIGN
 
-![Product Screenshot](https://raw.githubusercontent.com/paoonline/my-product/master/apidesign.png)
+![Product Screenshot](https://raw.githubusercontent.com/paoonline/my-product/master/api-design.png)
 
  (Micro service design)
 - Services are split: Customer API, Master Data API, Transaction API
@@ -47,7 +47,7 @@ MICRO SERVICE DESIGN
 * Kafka consumer listens for events
 * Writes processed/aggregated data into Redis 
 
-(When write to redis , Redis has limited durability  use DB backup as well)
+(Api consumer to redis , When write to redis , Redis has limited durability  use DB backup as well)
 - Since Redis is not persistent by default, you add:
 * DB backup for recovery
 * Optional: Redis AOF (Append-Only File) or RDB snapshot config
@@ -159,13 +159,64 @@ can used this query for select product with multilang
 
 ----------
 React Questions
-   useCallback ใช้ทําอะไร  -> use for subscribe state for callback function
+   (useCallback ใช้ทําอะไร)  -> use for subscribe state for callback function
 
    example:
    
       const memoizedCallback = useCallback(() => {
         // function logic
       }, [dependency1, dependency2]);
+
+
+    (Write a unit test for the UserProfile React component using Jest and React Testing
+Library)
+
+      const mockUser = {
+            name: 'test',
+            email: 'test',
+      };
+
+describe('UserProfile', () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
+  it('renders user data when fetch is successful', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => mockUser,
+    });
+
+    render(<UserProfile userId="123" />);
+    expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByText(mockUser.name)).toBeInTheDocument();
+      expect(screen.getByText(`Email: ${mockUser.email}`)).toBeInTheDocument();
+    });
+  });
+
+  it('shows error message when fetch fails', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: false,
+    });
+
+    render(<UserProfile userId="456" />);
+    await waitFor(() => {
+      expect(screen.getByText(/Error: Failed to fetch user data/i)).toBeInTheDocument();
+    });
+  });
+
+  it('shows error message when fetch throws an exception', async () => {
+    global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
+
+    render(<UserProfile userId="789" />);
+    await waitFor(() => {
+      expect(screen.getByText(/Error: Network error/i)).toBeInTheDocument();
+    });
+  });
+});
+
 
 
 
